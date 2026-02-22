@@ -1,0 +1,28 @@
+{
+  "name": "@synthaer/hem",
+  "version": "4.0.0",
+  "description": "Hedonistic Engineering Method — theme-based AI engineering profiles",
+  "type": "module",
+  "bin": {
+    "hem": "./bin/hem.sh"
+  },
+  "main": "./index.mjs",
+  "files": [
+    "bin/",
+    "index.mjs",
+    "README.md"
+  ],
+  "scripts": {
+    "postinstall": "echo 'HEM v4 installed. Run: hem init'"
+  },
+  "keywords": [
+    "ai", "engineering", "claude", "codex", "gemini",
+    "sdlc", "profiles", "hedonistic", "synthaer", "aakt"
+  ],
+  "author": "Hedonistic Engineering",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synthaer/hem.git"
+  }
+}

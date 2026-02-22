@@ -1,0 +1,61 @@
+{
+  "themes": {
+    "it-ops": {
+      "namePatterns": ["infra-*", "network*", "cloudyday", "*opnsense*", "*openwrt*", "demonic-*", "firewall", "zerotier*", "dnsvpn*", "unifi*", "magic-pve*", "oops-i-pinged*", "solvemyemail*"],
+      "dirSignals": ["runbooks/"],
+      "signals": ["Infrastructure, network, or system administration"]
+    },
+    "saas-product": {
+      "fileSignals": ["docker-compose.yml", "package.json", "Dockerfile"],
+      "dirSignals": ["src/", ".github/"],
+      "signals": ["Cloud-deployed web application or API"]
+    },
+    "local-product": {
+      "fileSignals": ["Makefile", "Package.swift", "Cargo.toml", "CMakeLists.txt"],
+      "extSignals": [".c", ".swift", ".rs", ".cpp"],
+      "signals": ["Desktop application, CLI tool, or native binary"]
+    },
+    "hybrid-product": {
+      "combo": ["docker-compose.yml + Makefile", "docker-compose.yml + Package.swift"],
+      "signals": ["Both local distribution and cloud deployment"]
+    },
+    "open-source": {
+      "fileSignals": ["CONTRIBUTING.md", "LICENSE"],
+      "dirSignals": ["src/"],
+      "signals": ["Community-facing open source project"]
+    },
+    "scripts": {
+      "threshold": "< 15 files",
+      "extSignals": [".sh", ".py", ".js"],
+      "signals": ["Small utility, automation script, or tool"]
+    },
+    "exploration": {
+      "ratio": "markdown > source files",
+      "signals": ["Research, analysis, or documentation project"]
+    },
+    "play": {
+      "signals": ["Experimental, no clear purpose, just vibes"],
+      "default": false
+    },
+    "hardware": {
+      "namePatterns": ["esp32*", "fido2*", "arduino*", "stm32*", "*firmware*", "*efiboot*", "macosboot", "macosvm", "multiplus*", "asahi", "MacGuts", "t2macbookpro"],
+      "fileSignals": ["platformio.ini", "sdkconfig"],
+      "dirSignals": ["components/"],
+      "extSignals": [".ino", ".hex", ".bin", ".uf2"],
+      "signals": ["Embedded systems, firmware, drivers, or hardware control"]
+    },
+    "security-research": {
+      "namePatterns": ["*red-team*", "*redteam*", "*pentest*", "*exploit*", "*ctf*", "sniffies*", "PlausibleDeniability", "observational_network", "web-inspector*", "securityReview"],
+      "fileSignals": ["AUTHORIZATION.md"],
+      "signals": ["Red team, penetration testing, security analysis, or cryptographic tools"]
+    },
+    "brand": {
+      "namePatterns": ["*brand*", "*portfolio*", "*manifesto*", "*investor*", "hedonistic*", "damien*", "arfioFONT", "upwork*", "jobapplication*", "DamienAI*"],
+      "signals": ["Personal brand, portfolio, marketing assets, or business presence"]
+    },
+    "client-work": {
+      "fileSignals": ["SCOPE.md", "HANDOFF.md"],
+      "signals": ["Client deliverable, consulting output, or contracted project"]
+    }
+  }
+}

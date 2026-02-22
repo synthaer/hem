@@ -1,0 +1,18 @@
+{
+  "version": "4.1.0",
+  "defaultTheme": "scripts",
+  "hooks": {
+    "sessionStart": true,
+    "preCompact": true
+  },
+  "flags": {
+    "aaktEnabled": true,
+    "autoClassify": true,
+    "betaFeedback": true
+  },
+  "profiles": [
+    "saas-product", "local-product", "hybrid-product",
+    "open-source", "it-ops", "scripts", "exploration", "play",
+    "hardware", "security-research", "brand", "client-work"
+  ]
+}
