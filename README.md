@@ -66,38 +66,103 @@ This is where HEM becomes more than a configuration system.
 
 ---
 
-## AAKT: The Shared Brain
+## Synthaer AAKT: The All-Agent Knowledge Trust
 
-**AAKT (All-Agent Knowledge Trust) is mandatory infrastructure for HEM.** Every profile, every theme, every agent uses it. The depth varies — a `play` project stores "anything surprising," while a `saas-product` stores knowledge, experiences, decisions, handoffs, retrospectives, gaps, and risks — but the floor is non-zero for everything.
+**AAKT is the shared brain for AI fleets.** It is a persistent, structured, cross-project knowledge store that transforms isolated AI agents into a collaborative intelligence network. Every agent in every HEM profile uses AAKT. The depth varies by theme, but the floor is non-zero — even a `play` project captures surprises worth remembering.
 
-### Why AAKT Matters
+AAKT is not a database. It is not a chat history. It is a *trust-weighted, provenance-verified, emotionally-aware knowledge graph* that makes every AI agent in your fleet smarter because every other agent has worked before it.
 
-AI agents have a memory problem. Each session starts from zero. Context windows compress and forget. Handoff documents help but they're point-in-time snapshots. What's missing is *continuous, structured, cross-project memory* — a knowledge layer that persists across sessions, spans projects, and is queryable by any agent in the ecosystem.
+### The Problem AAKT Solves
 
-AAKT provides this through:
+AI agents today are expensive amnesiacs. Consider the operational reality:
 
-- **Declarative knowledge** — Facts about projects, codebases, domains
-- **Procedural knowledge** — How things work, build steps, deployment procedures
-- **Experiential knowledge** — What happened, what was decided, what went wrong
-- **Cross-project context** — Changes in one project that affect others
+1. **Session amnesia.** Every AI session starts from zero. The agent that spent 45 minutes understanding your authentication architecture yesterday knows nothing today. Context windows compress and forget. Handoff documents help, but they're point-in-time snapshots that lose nuance.
 
-### Super Context
+2. **Silo intelligence.** Agent A working on your API has no idea that Agent B, working on your frontend last week, discovered that the date format convention changed. Each agent operates in isolation, rediscovering what others already learned.
 
-AAKT creates a *super context* that spans all projects:
+3. **Unchecked hallucination.** When an agent states a "fact" about your codebase, there is no mechanism to verify it against prior knowledge. No institutional memory means no institutional correction. Hallucinations propagate unchallenged through handoffs and documentation.
 
-- When working on infrastructure, AAKT knows about DNS changes made in a different project
-- When working on an auth service, AAKT knows about API contract changes in a related admin dashboard
-- When working on a crypto library, AAKT remembers patterns established in a different security project
+4. **Invisible fleet operations.** Human operators have no visibility into what their AI agents actually know, what decisions they're making, or how confident they are. Managing an AI fleet without a knowledge layer is like managing a team where no one writes anything down and no one talks to each other.
 
-No other AI memory system — including built-in model memories — provides cross-project continuity at this granularity. This is the killer feature.
+AAKT solves all four problems simultaneously.
 
-### Cross-Project Communication
+### How AAKT Works
 
-For multi-product ecosystems, AAKT serves as a message bus between projects:
+AAKT stores four types of knowledge, each with full provenance tracking:
 
-1. Before changing a shared interface, agents query AAKT for dependent projects
-2. After changing a shared interface, agents store a cross-project event
-3. Agents in other projects pick up these events on their next session start
+| Kind | Type | What It Captures |
+|------|------|-----------------|
+| 1 | **Declarative** | Facts — project architecture, API contracts, domain rules, infrastructure state |
+| 2 | **Procedural** | How-to — build steps, deployment procedures, debugging workflows, operational runbooks |
+| 3 | **Episodic** | What happened — session summaries, incident reports, decision logs, change histories |
+| 4 | **Experiential** | Lessons learned — errors encountered, patterns discovered, gotchas, optimization insights |
+
+Every knowledge entry carries metadata:
+- **Source agent** — Which agent stored this knowledge
+- **Timestamp** — When it was created
+- **Scope** — Project-specific or global (cross-project)
+- **Confidence** — How certain the storing agent was (via ESV)
+- **Trust score** — How reliable the source agent has been historically (via Trust Network)
+- **Tags** — Semantic labels for retrieval
+
+### Contextual Awareness: Making Agents Smarter
+
+AAKT makes every agent contextually aware at session start:
+
+```
+Session begins →
+  Agent queries AAKT: "What do I know about this project?" →
+    AAKT returns: prior decisions, unresolved issues, cross-project events,
+    patterns from related projects, warnings from previous agents →
+      Agent operates with full institutional context
+```
+
+This transforms the agent experience from "starting from scratch every time" to "continuing where the team left off." The agent knows:
+
+- What was decided and why (so it doesn't re-litigate settled questions)
+- What went wrong before (so it doesn't repeat known mistakes)
+- What other projects depend on this one (so it doesn't break shared interfaces)
+- What patterns work well here (so it follows established conventions)
+
+The result is measurably better output: fewer hallucinations, fewer redundant questions, faster ramp-up, and decisions consistent with prior work.
+
+### AI Team Accuracy: The Compounding Knowledge Effect
+
+The more agents use AAKT, the more accurate every agent becomes. This is a compounding effect:
+
+1. **Session 1:** Agent stores 5 knowledge entries (decisions, patterns, gotchas)
+2. **Session 2:** Next agent retrieves those 5 entries, avoids 2 known pitfalls, stores 3 new entries
+3. **Session 10:** Agent retrieves 30+ entries spanning multiple sessions and agents. It has a richer understanding of the project than any single human session could produce.
+4. **Session 100:** The knowledge base represents hundreds of hours of AI work. Every new agent starts with near-complete institutional knowledge.
+
+Traditional AI memory (built-in model memories, chat history) is linear — it captures what *one* agent did. AAKT is exponential — it captures what *every* agent across *every* project learned, weighted by trust and verified by provenance.
+
+### Hallucination Challenge and Refutation
+
+AAKT provides a structured mechanism to detect, challenge, and correct hallucinations:
+
+**Detection:** When an agent makes a claim about the codebase ("the API uses JWT authentication"), AAKT can cross-reference against stored declarative knowledge. If prior knowledge contradicts the claim, the system flags the conflict.
+
+**Challenge:** Conflicting knowledge entries trigger a challenge protocol:
+1. Both entries are surfaced with their provenance (which agent, when, what confidence level)
+2. Trust scores weight the challenge — a high-trust agent's prior knowledge outweighs a new agent's assertion
+3. The conflict is logged as an experience entry for future reference
+
+**Refutation:** When a hallucination is confirmed:
+1. The incorrect entry is marked as refuted (not deleted — the refutation itself is knowledge)
+2. The correct information is stored with elevated confidence
+3. The originating agent's trust score is adjusted downward
+4. Future agents retrieving knowledge from this domain see the correction
+
+**Prevention:** Over time, AAKT builds a "known facts" layer for each project that agents can verify against. This functions as institutional memory that actively resists hallucination — the system *remembers* what's true and pushes back when an agent invents something different.
+
+### Fleet-Wide AI Collaboration
+
+AAKT enables something unprecedented: AI agents that genuinely collaborate across sessions, projects, and even AI platforms.
+
+#### Cross-Project Knowledge Sharing
+
+Changes in one project automatically propagate awareness to related projects:
 
 ```yaml
 kind: 1  # DECLARATIVE
@@ -110,14 +175,97 @@ text: |
   Affects: project-admin, project-web
   Breaking: No (additive, nullable)
   Action Required: Update user management forms
+  Urgency: next-session
 ```
 
-### ESV and Trust Network
+When an agent starts a session on `project-admin`, AAKT surfaces this event: "Heads up — `project-auth` added a field you need to handle." The agent doesn't discover the breaking change by accident during testing. It knows before it writes a single line of code.
 
-Every agent interaction with AAKT includes:
+#### Multi-Engine Collaboration
 
-- **Emotional State Vectors (ESV):** Confidence, satisfaction, and uncertainty — tracked per agent, per session. These aren't simulated emotions; they're structured self-assessments that help calibrate how much to trust an agent's output.
-- **Trust Network:** Agent-to-agent trust scores. Did the handoff from one agent actually contain what the next agent needed? Did the test plan catch the real bugs? These scores feed back into agent selection and handoff quality.
+AAKT is engine-agnostic. Claude agents, Codex agents, and Gemini agents all read from and write to the same knowledge store. A Codex agent running tests can store a discovered bug pattern that a Claude agent picks up when writing the fix. A Gemini agent doing architecture review can store a structural concern that the Codex dev agent reads before implementation.
+
+This is true multi-agent collaboration — not just parallel execution, but shared learning.
+
+#### Pattern Propagation
+
+When an agent discovers an effective pattern in one project (a testing strategy, a deployment approach, an error handling technique), AAKT makes it available to agents working on similar projects:
+
+- Crypto patterns discovered in a security key project are available to agents working on encryption libraries
+- Deployment strategies proven in one infrastructure project are suggested in others
+- Performance optimizations found in one API apply to architecturally similar services
+
+The fleet gets smarter as a collective, not just as individuals.
+
+### Human Operator Insights
+
+AAKT gives human operators unprecedented visibility into their AI fleet:
+
+#### What Your Agents Know
+Query AAKT to see the complete knowledge base for any project — every decision made, every pattern discovered, every issue encountered. This is the institutional memory that normally exists only in engineers' heads.
+
+#### How Confident Your Agents Are
+ESV (Emotional State Vectors) track agent confidence, satisfaction, and uncertainty per session. When an agent reports low confidence on a critical decision, you know to review it. When confidence is consistently high across sessions, you know the project is on solid ground.
+
+#### Who Trusts Whom
+The Trust Network reveals the quality of agent-to-agent collaboration. Did the testing agent catch the bugs the dev agent missed? Did the handoff contain what the next agent actually needed? Trust scores surface collaboration quality issues before they become product quality issues.
+
+#### Where Hallucinations Happen
+Challenge and refutation logs show you exactly where agents are producing unreliable output — which domains, which project types, which agent roles. This data drives targeted improvements: better prompts, additional context, or human review gates for high-risk areas.
+
+#### Fleet Health Dashboard
+Aggregated AAKT data provides a fleet-level view:
+- Knowledge growth rate per project (is the team learning?)
+- Cross-project event frequency (how connected is the ecosystem?)
+- Trust score distribution (is collaboration quality improving?)
+- Hallucination rate trends (is accuracy improving over time?)
+
+### Emotional State Vectors (ESV)
+
+ESV is not simulated emotion. It is a structured self-assessment framework that gives agents a vocabulary for communicating uncertainty and confidence.
+
+Every agent interaction with AAKT includes an ESV snapshot:
+- **Confidence** — How certain is the agent about its output? (0.0 to 1.0)
+- **Satisfaction** — How well does the agent believe it met the objective? (0.0 to 1.0)
+- **Uncertainty areas** — Specific domains where the agent lacks confidence
+
+ESV serves three purposes:
+1. **Calibration** — Human operators see when agents are unsure, enabling targeted review
+2. **Weighting** — AAKT weights knowledge entries by the storing agent's confidence. A finding stored with 0.9 confidence ranks higher in retrieval than one stored at 0.4
+3. **Trend analysis** — ESV trends across sessions reveal whether agents are becoming more or less confident in a domain, signaling maturity or emerging complexity
+
+### Trust Network
+
+The Trust Network is an agent-to-agent reputation system built from observed collaboration outcomes.
+
+**How trust is built:**
+- Agent A hands off to Agent B. Agent B rates the handoff quality. That rating updates A's trust score.
+- Agent A stores knowledge. Agent B retrieves and uses it. If the knowledge was accurate and useful, A's trust score increases. If it was wrong, A's trust score decreases.
+- VPoT (testing agent) finds zero bugs in code from Dev IC. Dev IC's trust score increases. VPoT finds critical bugs? Trust score decreases.
+
+**How trust is used:**
+- **Agent selection** — For critical work, prefer agents with higher trust scores in the relevant domain
+- **Knowledge weighting** — Retrieve knowledge from high-trust agents first; weight their entries higher in case of conflicts
+- **Handoff quality** — Flag low-trust handoffs for human review before the next agent relies on them
+- **Hallucination detection** — When a low-trust agent contradicts a high-trust agent's prior knowledge, the conflict is weighted toward the high-trust source
+
+**Trust properties:**
+- Domain-specific (an agent can be high-trust for testing and low-trust for documentation)
+- Decays over time (past performance must be continuously reconfirmed)
+- Recoverable (an agent whose trust dropped can rebuild it through consistent quality)
+- Transparent (trust scores are queryable — agents and operators can see the graph)
+
+### DKIM-Style Knowledge Verification
+
+AAKT applies a concept borrowed from email security: every knowledge entry is signed at the point of creation, establishing an unbreakable chain of provenance.
+
+Just as DKIM (DomainKeys Identified Mail) allows email recipients to verify that a message genuinely came from the claimed sender and wasn't tampered with in transit, AAKT's knowledge verification ensures:
+
+- **Authenticity** — This knowledge entry was genuinely created by the agent that claims to have created it
+- **Integrity** — The knowledge has not been modified since it was stored
+- **Non-repudiation** — The storing agent cannot deny having stored it
+- **Chain of custody** — The full history of a knowledge entry's lifecycle (created, retrieved, challenged, refuted, confirmed) is immutably tracked
+
+This matters because knowledge without provenance is just another potential hallucination. When Agent B retrieves knowledge stored by Agent A, it can verify: Agent A actually stored this, at this time, with this confidence level, and it hasn't been tampered with. Combined with Trust Network scores, this creates a reliability assessment for every piece of knowledge in the system.
 
 ### Content Safety
 
@@ -127,6 +275,22 @@ AAKT is cloud-hosted and internet-accessible. HEM enforces a strict cloud-vs-loc
 **Local docs store:** IP addresses, VLANs, firewall rules, SSH configs, credentials, network topology
 
 This isn't paranoia — it's the result of a real operational incident where Cloudflare WAF correctly blocked an AAKT API call containing SSH configuration terminology. The WAF saw attack payload syntax in legitimate infrastructure knowledge. The fix isn't disabling the WAF; it's not storing infrastructure specifics in a cloud knowledge store.
+
+### The Exponential Advantage
+
+The value of AAKT compounds along three axes simultaneously:
+
+**Time:** Each session adds knowledge. After 100 sessions, an agent starting work on a project has access to the equivalent of hundreds of hours of prior engineering context — instantly, at session start, before writing a single line of code.
+
+**Breadth:** Each project adds cross-project context. An agent working on one service knows about changes in every related service. In a 50-project ecosystem, that's 50x the contextual awareness of an isolated agent.
+
+**Trust:** Each interaction refines trust scores. The system learns which agents produce reliable output in which domains. Knowledge retrieval becomes increasingly weighted toward proven sources. Hallucination rates decrease as the trust graph matures.
+
+These three axes multiply: `time x breadth x trust = compound intelligence`. A fleet of AI agents backed by a mature AAKT instance is not linearly better than isolated agents — it is exponentially better, because every agent benefits from every other agent's accumulated, trust-weighted, provenance-verified experience.
+
+This is the thesis: **AI agents are not a tool. They are a fleet. And fleets need shared intelligence to operate.**
+
+AAKT is that intelligence.
 
 ### Beta Feedback: We Smoke Our Own Harvest
 
